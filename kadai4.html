@@ -49,7 +49,8 @@
                         console.log("商品番号: "+this.id+", 商品名: "+this.name+"を購入します。");
                         // 課題4-2. ここにコードを書く
                         // 購入による商品の在庫削減処理
-                        
+                        this.stock--; // 在庫を1減らす
+                        console.log(`残りは${this.stock}個です。`);
                         
                         // 課題4-3. ここにコードを書く
                         // 在庫用のエレメントを抽出し、HTML内の個数を更新
@@ -65,7 +66,7 @@
             const item_list = new Array(items.length);
             const btn = new Array(items.length);
 
-            // 課題4-1 ここにコード書く
+            // 課題4-1ここにコード書く
             // 商品オブジェクトの生成
             for (let i = 0; i < items.length; i++) {
                 item_list[i] = new Item(items[i].name, items[i].price, items[i].stock);
@@ -76,6 +77,21 @@
 
             // 課題4-2. ここにコードを書く
             // 商品表の作成
+            for (let i = 0; i < item_list.length; i++) {
+                let item = item_list[i];
+
+
+                // 商品情報を表の行として追加
+                let row = `<tr>
+                    <td>${item.name}</td>
+                    <td>${item.price}円</td>
+                    <td id="stock${item.id}">${item.stock}</td>
+                    <td><button id="button${item.id}">購入</button></td>
+                </tr>`;
+
+                itemArea.innerHTML += row;
+            }
+
 
             // クリックイベント時の購入処理の設定
             for (let i=0; i<item_list.length; i++) {
