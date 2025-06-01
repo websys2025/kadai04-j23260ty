@@ -33,12 +33,15 @@
 
                 // 商品一覧の表示関数
                 static showItemList(list) {
-                    console.log("商品は以下の" + Item.number + "種類です。");
+                console.log("商品は以下の" + list.length + "種類です。");
 
-                    // 配列の内容を項目毎に出力
-                    // 課題4-1. ここにコードを書く
-                    console.log(""); // 空行の出力
+                for (let i = 0; i < list.length; i++) {
+                    let item = list[i];
+                    console.log("商品番号: " + item.id + ", 商品名: " + item.name + ", 金額: " + item.price + ", 在庫数: " + item.stock);
                 }
+
+                console.log(""); // 空行
+            }
                 
                 // 商品購入の関数
                 buyItem() {          
@@ -46,6 +49,7 @@
                         console.log("商品番号: "+this.id+", 商品名: "+this.name+"を購入します。");
                         // 課題4-2. ここにコードを書く
                         // 購入による商品の在庫削減処理
+                        
                         
                         // 課題4-3. ここにコードを書く
                         // 在庫用のエレメントを抽出し、HTML内の個数を更新
@@ -61,8 +65,14 @@
             const item_list = new Array(items.length);
             const btn = new Array(items.length);
 
-            // 課題4-1. ここにコード書く
+            // 課題4-1 ここにコード書く
             // 商品オブジェクトの生成
+            for (let i = 0; i < items.length; i++) {
+                item_list[i] = new Item(items[i].name, items[i].price, items[i].stock);
+                console.log("id: " + item_list[i].id + ", name: " + item_list[i].name + ", " + item_list[i].price + "円, 残り" + item_list[i].stock + "個");
+            }
+            
+
 
             // 課題4-2. ここにコードを書く
             // 商品表の作成
